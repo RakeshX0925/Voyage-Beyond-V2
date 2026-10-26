@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Planet Comparison — Voyage Beyond{% endblock %}
+{% block head %}<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>{% endblock %}
+{% block content %}
+<div class="page-intro"><p class="eyebrow">SIDE-BY-SIDE SCIENCE</p><h1 class="page-header left-header">Planet Comparison</h1><p class="page-subtitle left-subtitle">Choose two or more exoplanets to compare their available measurements.</p></div>
+<form class="filter-panel" method="get"><div class="field"><label for="planets">Select planets (Ctrl/Cmd-click for multiple)</label><select id="planets" name="planet" multiple size="7">{% for p in planet_options %}<option value="{{ p }}" {{ 'selected' if p in selected else '' }}>{{ p }}</option>{% endfor %}</select></div><div class="filter-actions"><button class="btn btn-primary" type="submit">Compare selected</button><a class="btn" href="{{ url_for('compare') }}">Reset</a></div></form>
+{% if selected_rows %}<div class="table-panel"><div class="panel-heading"><div><p class="eyebrow">COMPARISON TABLE</p><h2>{{ selected_rows|length }} planets selected</h2></div></div><div class="table-scroll"><table><thead><tr><th>Planet</th><th>Discovery method</th><th>Year</th><th>Orbital period (days)</th><th>Radius (Earths)</th><th>Mass (Earths)</th><th>Distance (pc)</th></tr></thead><tbody>{% for r in selected_rows %}<tr><td class="planet-name">{{ r.pl_name }}</td><td>{{ r.discoverymethod or '—' }}</td><td>{{ r.disc_year|display_num }}</td><td>{{ r.pl_orbper|display_num }}</td><td>{{ r.pl_rade|display_num }}</td><td>{{ r.pl_bmasse|display_num }}</td><td>{{ r.sy_dist|display_num }}</td></tr>{% endfor %}</tbody></table></div></div>
+<div class="panel"><div class="panel-heading"><div><p class="eyebrow">VISUAL COMPARISON</p><h2>Radius and mass</h2></div></div><div id="compareChart" class="chart chart-tall"></div></div>
+{% else %}<div class="empty-panel"><span>◎</span><h2>Pick your worlds</h2><p>Select planets above to build a side-by-side comparison. Start with Earth-sized candidates or familiar names from the catalogue.</p></div>{% endif %}
+{% endblock %}
+{% block scripts %}{% if selected_rows %}<script>
+const names={{ selected_rows|map(attribute='pl_name')|list|tojson }};
+const radius={{ selected_rows|map(attribute='pl_rade')|list|tojson }};
+const mass={{ selected_rows|map(attribute='pl_bmasse')|list|tojson }};
+const layout={paper_bgcolor:'rgba(0,0,0,0)',plot_bgcolor:'rgba(0,0,0,0)',font:{color:'#e8edff'},margin:{l:55,r:20,t:20,b:90},xaxis:{gridcolor:'rgba(255,255,255,.08)',tickangle:-25},yaxis:{gridcolor:'rgba(255,255,255,.08)'},barmode:'group',legend:{orientation:'h',y:1.12}};
+Plotly.newPlot('compareChart',[{x:names,y:radius,name:'Radius (Earths)',type:'bar',marker:{color:'#64e7ff'}},{x:names,y:mass,name:'Mass (Earths)',type:'bar',marker:{color:'#a78bfa'}}],layout,{responsive:true,displayModeBar:false});
+</script>{% endif %}{% endblock %}

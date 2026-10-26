@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Space Quiz — Voyage Beyond{% endblock %}
+{% block content %}
+<div class="page-intro"><p class="eyebrow">TEST YOUR COSMIC KNOWLEDGE</p><h1 class="page-header left-header">Space Quiz</h1><p class="page-subtitle left-subtitle">Five quick questions about our Solar System, galaxy, and the wider universe. Choose one answer for every question to see your score.</p></div>
+<div class="wrapper quiz-wrap"><form id="quizForm">
+{% set questions = [
+('q1','What is the largest planet in our Solar System?',['Earth','Jupiter','Mars'],'Jupiter'),
+('q2','What galaxy do we live in?',['Whirlpool Galaxy','Andromeda','Milky Way'],'Milky Way'),
+('q3','What is the Sun?',['A star','A planet','A comet'],'A star'),
+('q4','What is the closest planet to the Sun?',['Venus','Mercury','Earth'],'Mercury'),
+('q5',"What is the name of our galaxy's central supermassive black hole?",['Sagittarius A*','Cygnus X-1','Event Horizon'],'Sagittarius A*')
+] %}
+{% for key, question, options, answer in questions %}<div class="question"><h3>{{ loop.index }}. {{ question }}</h3>{% for option in options %}<label><input type="radio" name="{{ key }}" value="{{ option }}"> {{ option }}</label>{% endfor %}</div>{% endfor %}
+<button type="submit">Submit Answers</button></form><div id="result" class="result-box" role="status" aria-live="polite"></div></div>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/quiz.js') }}"></script>{% endblock %}

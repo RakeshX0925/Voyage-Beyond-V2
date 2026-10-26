@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Voyage Beyond — Space Learning & Data Exploration{% endblock %}
+{% block content %}
+<section class="hero hero-upgraded">
+  <div class="eyebrow"><span class="pulse-dot"></span> SPACE LEARNING · REAL DATA · CURIOUS MINDS</div>
+  <h1 class="title">Voyage <span class="gradient-text">Beyond</span></h1>
+  <p class="subtitle">The universe is vast. Every dataset is a new doorway.</p>
+  <p class="description">Journey from our Solar System to worlds orbiting distant stars. Learn space science, explore the supplied astronomy datasets, compare planetary measurements, and uncover patterns with interactive Python-powered tools.</p>
+  <div class="hero-actions"><a class="btn btn-primary" href="{{ url_for('dashboard') }}">Enter the Space Data Lab ↗</a><a class="btn" href="{{ url_for('about') }}">Discover the Project</a></div>
+  <div class="hero-orbit" aria-hidden="true"><div class="orbit orbit-one"><i></i></div><div class="orbit orbit-two"><i></i></div><div class="orbit orbit-three"><i></i></div><div class="orbit-sun">✦</div></div>
+  <div class="hero-bottom"><span>01 / EXPLORE</span><span>PLANETS · STARS · DATA</span><span>∞ / DISCOVER</span></div>
+</section>
+<section class="section-wrap"><div class="section-heading"><div><p class="eyebrow">YOUR MISSION STARTS HERE</p><h2>One universe. Many ways to explore.</h2></div><p>Start with a visual tour of space, test what you know, or step into the data lab to investigate real catalogue measurements.</p></div>
+<div class="feature-grid"><a class="feature-card" href="{{ url_for('dashboard') }}"><span class="feature-icon">◈</span><h3>Space Data Dashboard</h3><p>See a snapshot of the supplied exoplanet and Solar System datasets.</p><span class="card-link">Open dashboard ↗</span></a><a class="feature-card" href="{{ url_for('explorer') }}"><span class="feature-icon">⌕</span><h3>Planet Explorer</h3><p>Search planets and filter catalogue records by available measurements.</p><span class="card-link">Find a planet ↗</span></a><a class="feature-card" href="{{ url_for('analytics') }}"><span class="feature-icon">▥</span><h3>Cosmic Analytics</h3><p>Explore discovery history and relationships between radius and mass.</p><span class="card-link">View analytics ↗</span></a><a class="feature-card" href="{{ url_for('solar_system') }}"><span class="feature-icon">☼</span><h3>Our Solar System</h3><p>Inspect physical parameters for objects in our cosmic neighbourhood.</p><span class="card-link">Explore measurements ↗</span></a></div></section>
+<section class="section-wrap journey-strip"><div><p class="eyebrow">A SIMPLE SCIENCE WORKFLOW</p><h2>From question to discovery</h2><p>Search a dataset, inspect its quality, compare records, then use a chart to look for patterns. Missing measurements stay missing—no invented values.</p></div><div class="journey-steps"><div><span>01</span><b>Explore</b><small>Find records</small></div><div><span>02</span><b>Understand</b><small>Check the data</small></div><div><span>03</span><b>Compare</b><small>Look for patterns</small></div></div></section>
+<section class="cta-panel"><div><p class="eyebrow">READY FOR LIFTOFF?</p><h2>Your next question could be a discovery.</h2><p>Start exploring the supplied astronomy data and see where your curiosity takes you.</p></div><a class="btn btn-primary" href="{{ url_for('explorer') }}">Launch Planet Explorer ↗</a></section>
+{% endblock %}

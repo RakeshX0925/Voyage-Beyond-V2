@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Space Data Dashboard — Voyage Beyond{% endblock %}
+{% block head %}<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>{% endblock %}
+{% block content %}
+<div class="page-intro"><p class="eyebrow">MISSION CONTROL / DATA OVERVIEW</p><h1 class="page-header left-header">Space Data Dashboard</h1><p class="page-subtitle left-subtitle">A data-driven overview of the two local astronomy CSV files included with this project. Counts and summaries are calculated when the page loads.</p></div>
+<div class="stats-grid">
+<div class="stat-card"><span class="stat-label">EXOPLANET RECORDS</span><strong>{{ stats.total_exoplanets|number_format }}</strong><span class="stat-foot">Rows in supplied dataset</span></div>
+<div class="stat-card"><span class="stat-label">UNIQUE HOST STARS</span><strong>{{ stats.host_stars|number_format }}</strong><span class="stat-foot">Distinct host names</span></div>
+<div class="stat-card"><span class="stat-label">DISCOVERY METHODS</span><strong>{{ stats.discovery_methods }}</strong><span class="stat-foot">Methods represented</span></div>
+<div class="stat-card"><span class="stat-label">SOLAR SYSTEM OBJECTS</span><strong>{{ stats.solar_objects }}</strong><span class="stat-foot">Rows in physical parameters dataset</span></div>
+</div>
+<div class="two-col">
+<section class="panel"><div class="panel-heading"><div><p class="eyebrow">DISCOVERY HISTORY</p><h2>Discoveries by year</h2></div><a href="{{ url_for('analytics') }}">More analytics ↗</a></div><div id="yearChart" class="chart"></div></section>
+<section class="panel"><div class="panel-heading"><div><p class="eyebrow">HOW WE FIND WORLDS</p><h2>Discovery methods</h2></div></div><div id="methodChart" class="chart"></div></section>
+</div>
+<div class="panel data-summary"><div class="panel-heading"><div><p class="eyebrow">DATASET HEALTH</p><h2>Quick data quality check</h2></div><a href="{{ url_for('cleaning') }}">Open cleaning lab ↗</a></div>
+<div class="quality-grid"><div><span>Missing planet names</span><strong>{{ stats.missing_names }}</strong></div><div><span>Missing orbital periods</span><strong>{{ stats.missing_periods }}</strong></div><div><span>Duplicate rows</span><strong>{{ stats.duplicate_rows }}</strong></div><div><span>Average orbital period</span><strong>{{ stats.avg_orbital_period }} days</strong></div></div>
+<p class="small-note">Statistics are calculated from your supplied CSV files. Missing values are excluded from numeric averages.</p></div>
+{% endblock %}
+{% block scripts %}<script>
+const years={{ charts.years|tojson }}, yearCounts={{ charts.year_counts|tojson }};
+const methods={{ charts.methods|tojson }}, methodCounts={{ charts.method_counts|tojson }};
+const layout={paper_bgcolor:'rgba(0,0,0,0)',plot_bgcolor:'rgba(0,0,0,0)',font:{color:'#e8edff'},margin:{l:45,r:15,t:10,b:55},xaxis:{gridcolor:'rgba(255,255,255,.08)'},yaxis:{gridcolor:'rgba(255,255,255,.08)'},autosize:true};
+Plotly.newPlot('yearChart',[{x:years,y:yearCounts,type:'scatter',mode:'lines+markers',line:{color:'#64e7ff',width:3},marker:{size:6,color:'#a78bfa'},fill:'tozeroy',fillcolor:'rgba(100,231,255,.10)'}],layout,{responsive:true,displayModeBar:false});
+Plotly.newPlot('methodChart',[{labels:methods,values:methodCounts,type:'pie',hole:.58,textinfo:'percent',marker:{colors:['#64e7ff','#a78bfa','#f9a8d4','#fbbf24','#34d399','#818cf8']}}],{...layout,showlegend:true,legend:{orientation:'h',y:-.2},margin:{l:10,r:10,t:10,b:55}},{responsive:true,displayModeBar:false});
+</script>{% endblock %}

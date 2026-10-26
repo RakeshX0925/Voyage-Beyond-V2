@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Space Analytics — Voyage Beyond{% endblock %}
+{% block head %}<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>{% endblock %}
+{% block content %}
+<div class="page-intro"><p class="eyebrow">PATTERNS IN THE COSMOS</p><h1 class="page-header left-header">Interactive Analytics</h1><p class="page-subtitle left-subtitle">Explore discovery history and the relationships between available exoplanet measurements. Missing numeric values are excluded from the relevant plots.</p></div>
+<div class="two-col"><section class="panel"><div class="panel-heading"><div><p class="eyebrow">DISCOVERY TRENDS</p><h2>Planets discovered per year</h2></div></div><div id="trend" class="chart"></div></section><section class="panel"><div class="panel-heading"><div><p class="eyebrow">MEASUREMENT DISTRIBUTION</p><h2>Planet radius distribution</h2></div></div><div id="radius" class="chart"></div></section></div>
+<section class="panel"><div class="panel-heading"><div><p class="eyebrow">RELATIONSHIP EXPLORER</p><h2>Planet radius vs mass</h2></div><span class="data-chip">Earth units</span></div><div id="scatter" class="chart chart-tall"></div><p class="small-note">Mass and radius are not available for every planet. This scatter plot includes records with both values present.</p></section>
+{% endblock %}
+{% block scripts %}<script>
+const trend={{ charts.trend|tojson }}, radius={{ charts.radius|tojson }}, scatter={{ charts.scatter|tojson }};
+const base={paper_bgcolor:'rgba(0,0,0,0)',plot_bgcolor:'rgba(0,0,0,0)',font:{color:'#e8edff'},margin:{l:50,r:20,t:15,b:55},xaxis:{gridcolor:'rgba(255,255,255,.08)'},yaxis:{gridcolor:'rgba(255,255,255,.08)'},autosize:true};
+Plotly.newPlot('trend',[{x:trend.x,y:trend.y,type:'bar',marker:{color:'#64e7ff'}}],base,{responsive:true,displayModeBar:false});
+Plotly.newPlot('radius',[{x:radius,type:'histogram',nbinsx:35,marker:{color:'#a78bfa'}}],{...base,xaxis:{...base.xaxis,title:'Radius (Earths)'},yaxis:{...base.yaxis,title:'Number of planets'}},{responsive:true,displayModeBar:false});
+Plotly.newPlot('scatter',[{x:scatter.radius,y:scatter.mass,text:scatter.names,mode:'markers',type:'scattergl',marker:{size:7,color:scatter.year,colorscale:'Viridis',showscale:true,colorbar:{title:'Year'},opacity:.7}}],{...base,xaxis:{...base.xaxis,title:'Radius (Earths)'},yaxis:{...base.yaxis,title:'Mass (Earths)'},hovermode:'closest'},{responsive:true,displayModeBar:false});
+</script>{% endblock %}
