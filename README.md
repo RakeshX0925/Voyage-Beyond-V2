@@ -1,101 +1,297 @@
-# Voyage Beyond — Space Learning & Data Exploration
+# 🚀 Voyage Beyond — Explore the Universe Through Data
 
-Voyage Beyond preserves the original space-themed learning site and extends it into a Python-powered astronomy data project. The original Home, About, Gallery, Quiz, and Contact pages remain available alongside the data lab. The shared UI uses a responsive cosmic glassmorphism style across pages.
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
+  <img src="https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white" alt="Flask">
+  <img src="https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white" alt="Pandas">
+  <img src="https://img.shields.io/badge/Plotly-3F4F75?style=for-the-badge&logo=plotly&logoColor=white" alt="Plotly">
+  <img src="https://img.shields.io/badge/Hosted_on-Render-46E3B7?style=for-the-badge&logo=render&logoColor=black" alt="Hosted on Render">
+</p>
 
-## Features
+<p align="center">
+  <strong>A space-themed web application that brings planetary exploration, exoplanet datasets, Python-powered analysis, and interactive visualizations together in one place.</strong>
+</p>
 
-- **Home and About:** project overview, learning paths, tools, dataset details, and technology stack.
-- **Space Data Dashboard:** dataset counts, host-star and discovery-method summaries, data-quality indicators, and interactive charts.
-- **Planet Explorer:** search by planet/host name and filter by discovery method, year, mass, and radius.
-- **CSV export:** download filtered exoplanet records.
-- **Planet Comparison:** compare available measurements for up to eight selected exoplanets.
-- **Data Cleaning Lab:** inspect missing values and exact duplicates, and export a de-duplicated dataset.
-- **Interactive Analytics:** discovery-year trend, planet-radius distribution, and mass-versus-radius plot.
-- **Habitability Candidate Explorer:** filter by radius, orbital period, and optional system distance. This is a shortlist tool, not a life detector.
-- **Solar System Explorer:** inspect physical parameters and download the supplied Solar System CSV.
-- **Gallery and Quiz:** image lightbox and five-question space quiz.
-- **Contact demo:** validates the form and acknowledges feedback; it does not email or save personal details.
+<p align="center">
+  🌌 Discover planets · 🔭 Explore exoplanets · 📊 Analyze space data · 🪐 Compare worlds
+</p>
 
-## Datasets
+<p align="center">
+  <a href="https://voyage-beyond-v2.onrender.com"><strong>🌍 Explore the Live Website</strong></a>
+  &nbsp; • &nbsp;
+  <a href="https://github.com/RakeshX0925/Voyage-Beyond-V2.git"><strong>💻 View Source Code</strong></a>
+</p>
 
-- `data/exoplanets.csv` — 6,451 rows and 8 columns in the supplied copy: `pl_name`, `hostname`, `discoverymethod`, `disc_year`, `pl_orbper`, `pl_rade`, `pl_bmasse`, and `sy_dist`.
-- `data/solar_system.csv` — 13 rows of Solar System object measurements, including radius, mass, density, rotation/orbital periods, gravity, and escape velocity where available.
+---
 
-The application calculates summaries from the local CSV files. Missing measurements remain missing; the project does not replace them with zero or invent scientific values. The exoplanet file does not contain enough environmental information to determine whether a planet is habitable.
+## 🌌 About the Project
 
-## Requirements
+**Voyage Beyond** is a Python-powered space exploration and data analysis web application designed to make astronomical data easier to explore, understand, and visualize.
 
-- Python 3.10 or newer
-- Dependencies listed in `requirements.txt` (production) and `requirements-dev.txt` (includes pytest)
-- Internet access is needed for the externally hosted Plotly chart library, Google font, and remote background/gallery imagery. Core Flask routes and local CSV processing run locally.
+The project combines a space-themed web interface with a Flask backend and real, structured planetary and exoplanet datasets. Instead of simply displaying static information, it provides tools to search for planets, compare their properties, explore dataset statistics, and understand patterns through interactive charts.
 
-## Run on Windows
+Whether you're interested in discovering distant exoplanets or exploring the properties of our Solar System, Voyage Beyond offers an interactive starting point for your journey.
 
-1. Install Python 3.10 or newer.
-2. Open this project folder in VS Code.
-3. Open a terminal in the project folder and run:
+## 🖼️ Project Screenshots
 
-   ```powershell
-   py -m venv .venv
-   .\.venv\Scripts\Activate.ps1
-   python -m pip install -r requirements.txt
-   python app.py
-   ```
+Take a look inside Voyage Beyond.
 
-4. Visit `http://127.0.0.1:5000`.
+<!-- Upload your four screenshots to the screenshots/ folder in your GitHub repository. -->
 
-Alternatively, run `run_windows.bat` after dependencies are installed.
+<table>
+  <tr>
+    <td width="50%">
+      <a href="screenshots/dashboard.png">
+        <img src="screenshots/dashboard.png" alt="Voyage Beyond dashboard" width="100%">
+      </a>
+      <p align="center"><strong>🌌 1. Space Data Dashboard</strong><br>Explore key statistics and an overview of the available space data.</p>
+    </td>
+    <td width="50%">
+      <a href="screenshots/planet-explorer.png">
+        <img src="screenshots/planet-explorer.png" alt="Planet explorer and search interface" width="100%">
+      </a>
+      <p align="center"><strong>🔭 2. Planet Explorer</strong><br>Search and filter exoplanets using available planetary properties.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <a href="screenshots/analytics.png">
+        <img src="screenshots/analytics.png" alt="Interactive space data analytics" width="100%">
+      </a>
+      <p align="center"><strong>📊 3. Data Analytics</strong><br>Discover trends and patterns through interactive visualizations.</p>
+    </td>
+    <td width="50%">
+      <a href="screenshots/planet-comparison.png">
+        <img src="screenshots/planet-comparison.png" alt="Planet comparison interface" width="100%">
+      </a>
+      <p align="center"><strong>🪐 4. Planet Comparison</strong><br>Compare selected planets using their available measurable properties.</p>
+    </td>
+  </tr>
+</table>
 
-## Run on macOS/Linux
+## ✨ Features
+
+<details open>
+  <summary><strong>🌠 Space Data Dashboard</strong></summary>
+
+  - View an overview of the available planetary and exoplanet data.
+  - Explore dataset statistics and summary metrics.
+  - Get a starting point for deeper exploration and analysis.
+</details>
+
+<details>
+  <summary><strong>🔍 Exoplanet Explorer</strong></summary>
+
+  - Search for exoplanets by name.
+  - Filter planets using supported properties, including mass, radius, and discovery method.
+  - Explore information from a dataset containing thousands of exoplanet records.
+</details>
+
+<details>
+  <summary><strong>📈 Interactive Data Visualizations</strong></summary>
+
+  - Explore discovery trends and distributions.
+  - Visualize planetary properties and orbital information.
+  - Use interactive charts to examine astronomical data from different perspectives.
+</details>
+
+<details>
+  <summary><strong>⚖️ Planet Comparison</strong></summary>
+
+  - Select planets for side-by-side comparison.
+  - Examine available properties such as radius, mass, and orbital characteristics.
+  - Understand similarities and differences between selected worlds.
+</details>
+
+<details>
+  <summary><strong>🧹 Data Cleaning and Analysis</strong></summary>
+
+  - Inspect dataset quality.
+  - Identify missing values, duplicate records, and inconsistent data.
+  - Use Python data-processing tools to support structured analysis.
+</details>
+
+<details>
+  <summary><strong>🪐 Solar System Explorer</strong></summary>
+
+  - Explore data about objects in our Solar System.
+  - Examine available physical and orbital properties.
+  - Use structured data to learn more about familiar celestial objects.
+</details>
+
+<details>
+  <summary><strong>📥 Data Export and Additional Pages</strong></summary>
+
+  - Download supported datasets or filtered results as CSV files.
+  - Explore the original website pages, including Home, About, Gallery, Quiz, and Contact.
+  - Experience a combination of space-themed web design and data-driven functionality.
+</details>
+
+## 🧰 Technology Stack
+
+| Technology | Purpose |
+|---|---|
+| **Python** | Core application logic and data processing |
+| **Flask** | Backend framework and web routing |
+| **Pandas** | Dataset processing, filtering, and analysis |
+| **NumPy** | Numerical operations and data analysis |
+| **Plotly** | Interactive charts and data visualizations |
+| **HTML5** | Web page structure |
+| **CSS3** | Layout, styling, and visual design |
+| **JavaScript** | Client-side interactions |
+| **CSV datasets** | Structured planetary and exoplanet information |
+| **Render** | Web application hosting |
+
+## 📂 Project Structure
+
+```text
+voyage-beyond/
+│
+├── app.py                  # Flask application
+├── requirements.txt        # Python dependencies
+├── render.yaml             # Optional Render deployment configuration
+├── .gitignore              # Files excluded from Git
+│
+├── data/
+│   ├── exoplanets.csv      # Exoplanet dataset
+│   └── solar_system.csv    # Solar System dataset
+│
+├── templates/              # HTML templates
+│
+├── static/
+│   ├── css/                # Stylesheets
+│   ├── js/                 # JavaScript files
+│   └── images/             # Website images and assets
+│
+├── screenshots/
+│   ├── dashboard.png
+│   ├── planet-explorer.png
+│   ├── analytics.png
+│   └── planet-comparison.png
+│
+└── README.md               # Project documentation
+```
+
+*The structure above is illustrative. Keep the actual folder and file names from your repository if they differ.*
+
+## 🚀 Getting Started
+
+Want to run Voyage Beyond on your own computer? Follow these steps.
+
+### Prerequisites
+
+- Python installed on your system
+- Git installed on your system
+- A web browser
+
+### 1. Clone the repository
 
 ```bash
-python3 -m venv .venv
+git clone YOUR_GITHUB_REPOSITORY_URL
+```
+
+### 2. Navigate to the project directory
+
+```bash
+cd voyage-beyond
+```
+
+### 3. Create a virtual environment (recommended)
+
+```bash
+python -m venv .venv
+```
+
+Activate it on Windows:
+
+```powershell
+.venv\Scripts\activate
+```
+
+On macOS or Linux:
+
+```bash
 source .venv/bin/activate
-python -m pip install -r requirements-dev.txt
+```
+
+### 4. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 5. Run the application
+
+```bash
 python app.py
 ```
 
-## Tests
+### 6. Open the website
 
-```bash
-python -m pytest -q
+Visit the following address in your browser:
+
+```text
+http://127.0.0.1:5000
 ```
 
-The test suite checks page routes, Explorer filtering and pagination fallback, CSV downloads, contact-form acknowledgement, and candidate/solar-data routes.
+You're ready to begin exploring! 🚀
 
-## Page map
+## ☁️ Deployment
 
-| URL | Purpose |
-|---|---|
-| `/` | Home |
-| `/about` | Project overview and technologies |
-| `/gallery` | Cosmic gallery |
-| `/quiz` | Space quiz |
-| `/contact` | Feedback demo |
-| `/dashboard` | Dataset summary dashboard |
-| `/explorer` or `/explore` | Search/filter exoplanets |
-| `/compare` | Planet comparison |
-| `/analytics` | Interactive charts |
-| `/cleaning` | Data-quality report and cleaned export |
-| `/habitability` | Candidate filters |
-| `/solar-system` | Solar System physical data |
+Voyage Beyond is hosted on **Render**.
 
-## Deployment note
+🌍 **Live Website:** [Open Voyage Beyond](https://voyage-beyond-v2.onrender.com)
 
-For deployment, set a strong `VOYAGE_SECRET_KEY` environment variable and keep Flask debug mode disabled. The default secret is intended only for local development.
+The deployed application uses a Python environment, installs the dependencies listed in `requirements.txt`, and starts the Flask application with a production WSGI server.
 
-## Deploy on Render
+> Note: Free hosting may have usage limits and can temporarily sleep during periods of inactivity.
 
-This repository includes `render.yaml` for a straightforward Render deployment.
+## 🎯 Project Goals
 
-1. Push the project folder contents to a GitHub repository (the folder containing `app.py`, `requirements.txt`, `templates/`, `static/`, and `data/` should be the repository root).
-2. In Render, choose **New → Blueprint** and connect the GitHub repository, or choose **New → Web Service**.
-3. If using a Blueprint, Render reads `render.yaml`. If creating a Web Service manually, set the build command to `pip install -r requirements.txt` and the start command to `gunicorn app:app`.
-4. Ensure `VOYAGE_SECRET_KEY` is set to a strong random secret and `FLASK_DEBUG` is `0`. The included Blueprint generates a secret automatically. Never commit real `.env` files or secret values.
-5. Deploy and inspect the service logs. Test the home page and data pages on the live URL.
+- Make planetary and exoplanet data easier to explore.
+- Demonstrate how Python can power an interactive web application.
+- Combine data cleaning, filtering, comparison, and visualization in one project.
+- Present scientific information through an accessible and engaging interface.
+- Apply practical skills in Python development, web technologies, and data analysis.
 
-The app reads its CSV datasets from `data/`, so keep both CSV files in the repository. Render free web services may sleep after inactivity and take a little time to wake up.
+## 🔮 Future Improvements
 
-## Development tests
+Potential enhancements for future versions include:
 
-Install development dependencies with `python -m pip install -r requirements-dev.txt`, then run `python -m pytest -q`. Keep `tests/` in GitHub; it is useful project source and is not served as a public website page.
+- 🌍 More advanced planet filtering and search.
+- 🛰️ Additional astronomical datasets and data sources.
+- 📊 Expanded analytics and visualization options.
+- 🪐 More detailed planet profiles and comparisons.
+- 📱 Further improvements to the mobile experience.
+- 🌌 More interactive space exploration experiences.
+
+## 📚 What This Project Demonstrates
+
+Voyage Beyond brings together several practical development concepts:
+
+- Building a web application with Flask.
+- Working with structured datasets using Pandas and NumPy.
+- Creating interactive visualizations with Plotly.
+- Designing a frontend with HTML, CSS, and JavaScript.
+- Organizing a Python project for GitHub.
+- Deploying a web application to a hosting platform.
+
+## 🤝 Contributions
+
+Suggestions, feedback, and improvements are welcome.
+
+If you find an issue or have an idea for a new feature, feel free to open a GitHub issue or submit a pull request.
+
+## 👨‍🚀 Author
+
+**YOUR NAME**
+
+GitHub: [RakeshX0925](https://github.com/RakeshX0925)
+
+---
+
+<p align="center">
+  <strong>✨ The universe is vast. Let data be your guide. ✨</strong>
+  <br>
+  <em>Keep exploring. Keep discovering. Voyage Beyond. 🚀</em>
+</p>
